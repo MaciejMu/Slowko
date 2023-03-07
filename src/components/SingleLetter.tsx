@@ -1,13 +1,13 @@
-import React from "react";
+import React, { FC, useContext } from "react";
+import { AppContext } from "../App";
 
-function SingleLetter({
+const SingleLetter: FC<{ letterPos: number; attemptVal: number }> = ({
   letterPos,
   attemptVal,
-}: {
-  letterPos: number;
-  attemptVal: number;
-}) {
-  return <div className="letter">Letter</div>;
-}
+}) => {
+  const { board } = useContext(AppContext);
+  const letter = board[letterPos][attemptVal];
+  return <div className="letter">{letter}</div>;
+};
 
 export default SingleLetter;

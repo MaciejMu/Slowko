@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mynerve&display=swap");
+
 .App {
   text-align: center;
   background-color: #121212;
@@ -23,7 +25,7 @@ nav {
 
 nav h1 {
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Mynerve", cursive;
   color: white;
   font-size: 45px;
 }

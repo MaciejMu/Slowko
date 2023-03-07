@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { boardDefault } from "../Words";
 import SingleLetter from "./SingleLetter";
 
 function Board() {
