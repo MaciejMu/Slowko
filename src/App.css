@@ -39,8 +39,8 @@ nav h1 {
 }
 
 .board {
-  width: 450px;
-  height: 550px;
+  width: 350px;
+  height: 450px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
@@ -121,7 +121,7 @@ nav h1 {
   cursor: pointer;
 }
 
-#big {
+#funcKey {
   width: 100px;
 }
 #disabled {

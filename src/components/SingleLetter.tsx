@@ -1,12 +1,12 @@
 import React, { FC, useContext } from "react";
 import { AppContext } from "../App";
 
-const SingleLetter: FC<{ letterPos: number; attemptVal: number }> = ({
-  letterPos,
+const SingleLetter: FC<{ attemptVal: number; letterPos: number }> = ({
   attemptVal,
+  letterPos,
 }) => {
   const { board } = useContext(AppContext);
-  const letter = board[letterPos][attemptVal];
+  const letter = board[attemptVal][letterPos];
   return <div className="letter">{letter}</div>;
 };
 
