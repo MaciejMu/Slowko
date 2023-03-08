@@ -19,6 +19,7 @@ interface AppContext {
   onEnter: () => void;
   onDelete: () => void;
   onSelectedLetter: (keyVal: string) => void;
+  correctWord: string;
 }
 
 export const AppContext = createContext<AppContext>({} as AppContext);
@@ -26,6 +27,8 @@ export const AppContext = createContext<AppContext>({} as AppContext);
 const App: FC = () => {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
+
+  const correctWord = "BAGNO";
 
   const onEnter = () => {
     if (currAttempt.letterPos !== 5) return;
@@ -62,6 +65,7 @@ const App: FC = () => {
           onEnter,
           onDelete,
           onSelectedLetter,
+          correctWord,
         }}
       >
         <div className="game">
