@@ -1,32 +1,35 @@
-import React, { FC, useContext, useEffect } from "react";
+import React, { FC, useCallback, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import Key from "./Key";
 
 const Keyboard: FC = () => {
-  const { onEnter, onDelete, onSelectedLetter, disabledLetters } =
+  const { onEnter, onDelete, onSelectedLetter, disabledLetters, currAttempt } =
     useContext(AppContext);
 
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
   const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
-  const handleKeyboard = (event: { key: string }) => {
-    if (event.key === "Enter") {
-      onEnter();
-    } else if (event.key === "Backspace") {
-      onDelete();
-    } else {
-      keys1.forEach((key) => {
-        if (event.key.toUpperCase() === key) onSelectedLetter(key);
-      });
-      keys2.forEach((key) => {
-        if (event.key.toUpperCase() === key) onSelectedLetter(key);
-      });
-      keys3.forEach((key) => {
-        if (event.key.toUpperCase() === key) onSelectedLetter(key);
-      });
-    }
-  };
+  const handleKeyboard = useCallback(
+    (event: { key: string }) => {
+      if (event.key === "Enter") {
+        onEnter();
+      } else if (event.key === "Backspace") {
+        onDelete();
+      } else {
+        keys1.forEach((key) => {
+          if (event.key.toUpperCase() === key) onSelectedLetter(key);
+        });
+        keys2.forEach((key) => {
+          if (event.key.toUpperCase() === key) onSelectedLetter(key);
+        });
+        keys3.forEach((key) => {
+          if (event.key.toUpperCase() === key) onSelectedLetter(key);
+        });
+      }
+    },
+    [currAttempt] // eslint-disable-line react-hooks/exhaustive-deps
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleKeyboard);

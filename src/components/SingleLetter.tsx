@@ -26,7 +26,7 @@ const SingleLetter: FC<SingleLetterProps> = ({ attemptVal, letterPos }) => {
         letter,
       ]);
     }
-  }, [currAttempt.attempt]);
+  }, [currAttempt.attempt]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="letter" id={letterState}>

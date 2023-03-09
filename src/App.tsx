@@ -13,7 +13,7 @@ export const AppContext = createContext<AppC>({} as AppC);
 const App: FC = () => {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
-  const [wordSet, setWordSet] = useState<string[]>();
+  const [wordSet, setWordSet] = useState<string[]>([]);
   const [disabledLetters, setDisabledLetters] = useState<string[]>([]);
   const [correctWord, setCorrectWord] = useState("");
   const [gameOver, setGameOver] = useState({
@@ -35,7 +35,7 @@ const App: FC = () => {
     for (let i = 0; i < 5; i++) {
       currWord += board[currAttempt.attempt][i];
     }
-    if (words.includes(currWord.toLowerCase())) {
+    if (wordSet.includes(currWord.toLowerCase())) {
       setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
     } else {
       alert("Tego słowa nie ma w bazie");
