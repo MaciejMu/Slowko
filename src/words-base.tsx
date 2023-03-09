@@ -70,6 +70,8 @@ export const words = [
   "adres",
   "adept",
   "akord",
+  "arbuz",
+  "argon",
   "aktyw",
   "akryl",
   "alias",
