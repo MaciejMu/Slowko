@@ -11,3 +11,4 @@ You have to guess the hidden word in 6 tries and the color of the letters change
 
 🟩 GREEN -  is in the word and in the correct spot.
 
+https://maciej-muter-slowko.netlify.app/
