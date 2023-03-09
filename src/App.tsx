@@ -1,38 +1,56 @@
-import { createContext, FC, useState } from "react";
+import { createContext, FC, useEffect, useState } from "react";
 import "./App.css";
 import Board from "./components/Board";
+import GameOver from "./components/GameOver";
 import Keyboard from "./components/Keyboard";
 import { boardDefault } from "./Words";
+import { words } from "./words-base";
+import Confetti from "react-confetti";
+import { AppC } from "./types/AppInterface";
 
-interface AppContext {
-  board: string[][];
-  setBoard: React.Dispatch<React.SetStateAction<string[][]>>;
-}
-
-interface AppContext {
-  board: string[][];
-  setBoard: React.Dispatch<React.SetStateAction<string[][]>>;
-  currAttempt: { attempt: number; letterPos: number };
-  setCurrAttempt: React.Dispatch<
-    React.SetStateAction<{ attempt: number; letterPos: number }>
-  >;
-  onEnter: () => void;
-  onDelete: () => void;
-  onSelectedLetter: (keyVal: string) => void;
-  correctWord: string;
-}
-
-export const AppContext = createContext<AppContext>({} as AppContext);
+export const AppContext = createContext<AppC>({} as AppC);
 
 const App: FC = () => {
   const [board, setBoard] = useState(boardDefault);
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
+  const [wordSet, setWordSet] = useState<string[]>();
+  const [disabledLetters, setDisabledLetters] = useState<string[]>([]);
+  const [correctWord, setCorrectWord] = useState("");
+  const [gameOver, setGameOver] = useState({
+    gameOver: false,
+    guessedWord: false,
+  });
 
-  const correctWord = "BAGNO";
+  useEffect(() => {
+    setWordSet(words);
+    setCorrectWord(
+      words[Math.floor(Math.random() * words.length)].toUpperCase()
+    );
+  }, []);
+
+  console.log(correctWord);
 
   const onEnter = () => {
     if (currAttempt.letterPos !== 5) return;
-    setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+
+    let currWord = "";
+    for (let i = 0; i < 5; i++) {
+      currWord += board[currAttempt.attempt][i];
+    }
+    if (words.includes(currWord.toLowerCase())) {
+      setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 });
+    } else {
+      alert("Tego słowa nie ma w bazie");
+    }
+
+    if (currWord === correctWord) {
+      setGameOver({ gameOver: true, guessedWord: true });
+      return;
+    }
+
+    if (currAttempt.attempt === 5) {
+      setGameOver({ gameOver: true, guessedWord: false });
+    }
   };
 
   const onDelete = () => {
@@ -53,6 +71,7 @@ const App: FC = () => {
 
   return (
     <div className="App">
+      {gameOver.guessedWord && <Confetti />}
       <nav>
         <h1>Słówko</h1>
       </nav>
@@ -66,11 +85,15 @@ const App: FC = () => {
           onDelete,
           onSelectedLetter,
           correctWord,
+          disabledLetters,
+          setDisabledLetters,
+          gameOver,
+          setGameOver,
         }}
       >
         <div className="game">
           <Board />
-          <Keyboard />
+          {gameOver.gameOver ? <GameOver /> : <Keyboard />}
         </div>
       </AppContext.Provider>
     </div>

@@ -1,26 +1,14 @@
 import React, { FC, useContext } from "react";
 import { AppContext } from "../App";
+import { KeyProps } from "../types/KeyInterface";
 
-interface Key {
-  keyVal: string;
-  funcKey?: boolean;
-}
-
-const Key: FC<Key> = ({ keyVal, funcKey }) => {
-  const {
-    board,
-    setBoard,
-    currAttempt,
-    setCurrAttempt,
-    onEnter,
-    onDelete,
-    onSelectedLetter,
-  } = useContext(AppContext);
+const Key: FC<KeyProps> = ({ keyVal, funcKey, disabled }) => {
+  const { onEnter, onDelete, onSelectedLetter } = useContext(AppContext);
 
   const selectLetter = () => {
-    if (keyVal === "ENTER") {
+    if (keyVal === "⮐") {
       onEnter();
-    } else if (keyVal === "DELETE") {
+    } else if (keyVal === "DEL") {
       onDelete();
     } else {
       onSelectedLetter(keyVal);
@@ -28,7 +16,11 @@ const Key: FC<Key> = ({ keyVal, funcKey }) => {
   };
 
   return (
-    <div className="key" id={funcKey ? "funcKey" : ""} onClick={selectLetter}>
+    <div
+      className="key"
+      id={funcKey ? "funcKey" : disabled ? "disabled" : undefined}
+      onClick={selectLetter}
+    >
       {keyVal}
     </div>
   );

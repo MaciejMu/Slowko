@@ -1,9 +1,10 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { AppContext } from "../App";
 import Key from "./Key";
 
-const Keyboard = () => {
-  const { onEnter, onDelete, onSelectedLetter } = useContext(AppContext);
+const Keyboard: FC = () => {
+  const { onEnter, onDelete, onSelectedLetter, disabledLetters } =
+    useContext(AppContext);
 
   const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -36,22 +37,40 @@ const Keyboard = () => {
 
   return (
     <div className="keyboard" onKeyDown={handleKeyboard}>
-      <div className="line1">
+      <div className="keyboard__row">
         {keys1.map((key) => {
-          return <Key keyVal={key} key={key} />;
+          return (
+            <Key
+              keyVal={key}
+              key={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
       </div>
-      <div className="line2">
+      <div className="keyboard__row">
         {keys2.map((key) => {
-          return <Key keyVal={key} key={key} />;
+          return (
+            <Key
+              keyVal={key}
+              key={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
       </div>
-      <div className="line3">
-        <Key keyVal={"ENTER"} funcKey />
+      <div className="keyboard__row">
+        <Key keyVal={"⮐"} funcKey />
         {keys3.map((key) => {
-          return <Key keyVal={key} key={key} />;
+          return (
+            <Key
+              keyVal={key}
+              key={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
-        <Key keyVal={"DELETE"} funcKey />
+        <Key keyVal={"DEL"} funcKey />
       </div>
     </div>
   );

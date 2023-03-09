@@ -1,11 +1,10 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { AppContext } from "../App";
+import { SingleLetterProps } from "../types/SingleLetterInterface";
 
-const SingleLetter: FC<{ attemptVal: number; letterPos: number }> = ({
-  attemptVal,
-  letterPos,
-}) => {
-  const { board, correctWord, currAttempt } = useContext(AppContext);
+const SingleLetter: FC<SingleLetterProps> = ({ attemptVal, letterPos }) => {
+  const { board, correctWord, currAttempt, setDisabledLetters } =
+    useContext(AppContext);
   const letter = board[attemptVal][letterPos];
 
   const correct = correctWord[letterPos] === letter;
@@ -19,6 +18,15 @@ const SingleLetter: FC<{ attemptVal: number; letterPos: number }> = ({
         ? "almost"
         : "wrong"
       : undefined;
+
+  useEffect(() => {
+    if (letter !== "" && !correct && !almost) {
+      setDisabledLetters((prevDisabledLetters) => [
+        ...prevDisabledLetters,
+        letter,
+      ]);
+    }
+  }, [currAttempt.attempt]);
 
   return (
     <div className="letter" id={letterState}>

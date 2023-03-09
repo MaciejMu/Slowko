@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { FC } from "react";
 import SingleLetter from "./SingleLetter";
 
-function Board() {
+const Board: FC = () => {
   return (
     <div className="board">
       <div className="board__row">
@@ -48,6 +48,6 @@ function Board() {
       </div>
     </div>
   );
-}
+};
 
 export default Board;
