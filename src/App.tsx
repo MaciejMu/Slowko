@@ -28,8 +28,6 @@ const App: FC = () => {
     );
   }, []);
 
-  console.log(correctWord);
-
   const onEnter = () => {
     if (currAttempt.letterPos !== 5) return;
 
