@@ -99,7 +99,7 @@ export const words = [
   "bomba",
   "bongo",
   "bonus",
-  "burak"
+  "burak",
   "boski",
   "botki",
   "burza",
