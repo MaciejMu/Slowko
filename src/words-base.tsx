@@ -84,6 +84,7 @@ export const words = [
   "barki",
   "barek",
   "barwa",
+  "babka",
   "bazar",
   "bekon",
   "belka",
