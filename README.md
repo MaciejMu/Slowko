@@ -1,8 +1,8 @@
-Słówko
+# Słówko
 
 This is polish verion of wordle game.
 
-Rules: 
+### Rules: 
 You have to guess the hidden word in 6 tries and the color of the letters changes to show how close you are.
 
    GREY - aren't in the target word at all.
