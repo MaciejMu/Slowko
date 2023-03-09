@@ -83,6 +83,7 @@ export const words = [
   "balia",
   "barki",
   "barek",
+  "barka",
   "barwa",
   "babka",
   "bazar",
@@ -98,6 +99,7 @@ export const words = [
   "bomba",
   "bongo",
   "bonus",
+  "burak"
   "boski",
   "botki",
   "burza",
