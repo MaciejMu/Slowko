@@ -8,7 +8,7 @@ const Key: FC<KeyProps> = ({ keyVal, funcKey, disabled }) => {
   const selectLetter = () => {
     if (keyVal === "⮐") {
       onEnter();
-    } else if (keyVal === "DEL") {
+    } else if (keyVal === "⌫") {
       onDelete();
     } else {
       onSelectedLetter(keyVal);
