@@ -73,7 +73,7 @@ const Keyboard: FC = () => {
             />
           );
         })}
-        <Key keyVal={"DEL"} funcKey />
+        <Key keyVal={"⌫"} funcKey />
       </div>
     </div>
   );
