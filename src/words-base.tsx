@@ -788,4 +788,13 @@ export const words = [
   "nutki",
   "nylon",
   "norma",
+  "nosze",
+  "nudne",
+  "nudny",
+  "nudni",
+  "nudno",
+  "nugat",
+  "numer",
+  "nurek",
+  "",
 ];
