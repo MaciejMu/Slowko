@@ -6,7 +6,7 @@ const GameOver: FC = () => {
   return (
     <div className="gameOver">
       <h3>{gameOver.guessedWord ? "Wygrałeś!" : "Przegrałeś "}</h3>
-      <h1>Correct word: {correctWord}</h1>
+      <h1>Prawidłowe słówko: {correctWord}</h1>
       {gameOver.guessedWord && (
         <h3> Zgadłeś w {currAttempt.attempt} próbach</h3>
       )}
